@@ -180,21 +180,6 @@ addData(getCustomers(), model.CustomerModel, 4);
 addData(getCategories(), model.CategoryModel, 5);
 
 
-module.exports.connect = function(){
-    mongoose.connect(dbUrl);
 
-    var db = mongoose.connection;
-    db.once('open', function(){
-        console.log('Connected ' + dbUrl);
-    });
 
-    db.on('error', function (err) {
-        console.log(err);
-    });
 
-};
-
-module.exports.close = function(){
-    mongoose.connection.close();
-    console.log('Connection closed');
-};
