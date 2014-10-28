@@ -19,16 +19,18 @@ router.get('/', function(req, res) {
         modelMongo.close();
     })
 });
+
 router.get('/orderdetails/:id', function(req, res){
     modelMongo.connect();
-    var id = router.get.params.id;
-    model.OrderModel.find({orderID : 'id'}, function(err, order){
+    var id = req.params.id;
+    model.OrderModel.find({_id: id}, function(err, order){
         if(err){
             res.render('orderdetails', {order: err, title:'Orderdetails'});
+        } else {
+            console.log(order);
+            res.render('orderdetails', {order: order, title: 'Orderdetails'});
         }
-            res.render('orderdetails' , {order : order , title:'Orderdetails'});
-
-        })
-    modelMongo.close();
+        modelMongo.close();
     })
+})
 module.exports = router;

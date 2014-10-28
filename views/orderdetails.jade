@@ -1,3 +1,21 @@
-//
-   Created by Henrik on 28-10-2014.
+extends layout
 
+block content
+
+    div.container.col-lg-6
+        table.table
+                tr
+                   td Id: #{order[0]._id}
+                   td Name: #{order[0].shipName}
+                tr
+                   td Date: #{order[0].orderDate}
+                   td Address: #{order[0].shipAddress}
+                tr
+                   td Required: #{order[0].requiredDate}
+                   td City: #{order[0].shipCity}
+                tr
+                   td Shipped: #{order[0].shippedDate}
+                   td Zip: #{order[0].shipPostalCode}
+                tr
+                   td
+                   td Country: #{order[0].shipCountry}
