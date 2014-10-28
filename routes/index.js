@@ -19,5 +19,16 @@ router.get('/', function(req, res) {
         modelMongo.close();
     })
 });
+router.get('/orderdetails/:id', function(req, res){
+    modelMongo.connect();
+    var id = router.get.params.id;
+    model.OrderModel.find({orderID : 'id'}, function(err, order){
+        if(err){
+            res.render('orderdetails', {order: err, title:'Orderdetails'});
+        }
+            res.render('orderdetails' , {order : order , title:'Orderdetails'});
 
+        })
+    modelMongo.close();
+    })
 module.exports = router;
