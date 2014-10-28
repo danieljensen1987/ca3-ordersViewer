@@ -3,7 +3,7 @@ html
   head
     title= title
     //link(href="/images/favicon.ico", rel="shortcut icon", type="image/x-icon")
-    link(rel='stylesheet', href='/css/cosmo.bootstrap.min.css')
+    link(rel='stylesheet', href='/css/slate.bootstrap.min.css')
     link(rel='stylesheet', href='/css/site.css')
   body
     block menu
@@ -13,6 +13,8 @@ html
             .navbar-brand #{title}
           #navbar-main.navbar-collapse.collapse
             ul.nav.navbar-nav.navbar-right
+              li
+                a(href='/orders') Orders
               li
                 a(href='/') Home
     br

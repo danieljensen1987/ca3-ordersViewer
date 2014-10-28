@@ -1,25 +1,6 @@
 extends layout
-
 block content
-  div.container
-    .col-lg-12
-      table.table.table-striped.table-hover.table-bordered
-        thead
-          tr
-            th ID
-            th DATE
-            th NAME
-            th ADDRESS
-        tbody
-          for order in orders
-            tr(onclick='DoNav("/orderdetails/", #{order._id})')
-              td #{order._id}
-              td #{order.orderDate}
-              td #{order.shipName}
-              td #{order.shipAddress}
+    div.container
+        h1 Hello
 
-      button.btn.btn-danger ok
-      button.btn.btn-success ok
-      button.btn.btn-default
-          span.glyphicon.glyphicon-thumbs-up
-      button.btn.btn-warning ok
+            
