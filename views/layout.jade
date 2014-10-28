@@ -7,6 +7,17 @@ html
     link(rel='stylesheet', href='/css/site.css')
   body
     block menu
+      .navbar.navbar-default.navbar-fixed-top
+        .container
+          .navbar-header
+            .navbar-brand #{title}
+          #navbar-main.navbar-collapse.collapse
+            ul.nav.navbar-nav.navbar-right
+              li
+                a(href='/') Home
+    br
+    br
+    br
     block content
     block footer
     include scripts

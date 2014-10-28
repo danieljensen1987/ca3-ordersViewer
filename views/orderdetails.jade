@@ -2,48 +2,49 @@ extends layout
 
 block content
 
-    div.container.col-lg-6
-        table.table
-                tr
-                   td Id: #{order[0]._id}
-                   td Name: #{order[0].shipName}
-                tr
-                   td Date: #{order[0].orderDate}
-                   td Address: #{order[0].shipAddress}
-                tr
-                   td Required: #{order[0].requiredDate}
-                   td City: #{order[0].shipCity}
-                tr
-                   td Shipped: #{order[0].shippedDate}
-                   td Zip: #{order[0].shipPostalCode}
-                tr
-                   td
-                   td Country: #{order[0].shipCountry}
+    div.container.col-lg-12
+
+
+        p Id: #{order[0]._id}
+        p Name: #{order[0].shipName}
+
+        p Date: #{order[0].orderDate}
+        p Address: #{order[0].shipAddress}
+
+        p Required: #{order[0].requiredDate}
+        p City: #{order[0].shipCity}
+
+        p Shipped: #{order[0].shippedDate}
+        p Zip: #{order[0].shipPostalCode}
+
+        p Country: #{order[0].shipCountry}
 
         table.table.table-striped.table-hover
-            tr
-                th Product
-                th UnitPrice
-                th Quantity
-                th Discount
-                th Price
-            tr
-                - var total = 0
-                for detail in orderDetails
-                    tr
-                        for product in productDetails
-                            if(detail.productId == product._id)
-                                td #{product.name}
-                        td #{detail.unitPrice}
-                        td #{detail.quantity}
-                        td #{detail.discount}
-                        - var calc = function(){
-                        -    var res = (detail.unitPrice*detail.quantity)*(1-detail.discount)
-                        -    total+=res
-                        - return res.toFixed(2)}
-                        td #{calc()}
+            thead
                 tr
-                    td(colspan='4') Total
-                    td #{total.toFixed(2)}
+                    th Product
+                    th UnitPrice
+                    th Quantity
+                    th Discount
+                    th Price
+            tbody
+                tr
+                    - var total = 0
+                    for detail in orderDetails
+                        tr
+                            for product in productDetails
+                                if(detail.productId == product._id)
+                                    td #{product.name}
+                            td #{detail.unitPrice}
+                            td #{detail.quantity}
+                            td #{detail.discount}
+                            - var calc = function(){
+                            -    var res = (detail.unitPrice*detail.quantity)*(1-detail.discount)
+                            -    total+=res
+                            - return res.toFixed(2)}
+                            td #{calc()}
+                    tr
+                        td(colspan='4') Total
+                        td #{total.toFixed(2)}
 
         button.btn.btn-success(onclick='goBack()') BACK
