@@ -27,10 +27,31 @@ router.get('/orderdetails/:id', function(req, res){
         if(err){
             res.render('orderdetails', {order: err, title:'Orderdetails'});
         } else {
-            console.log(order);
-            res.render('orderdetails', {order: order, title: 'Orderdetails'});
+            model.DetailsModel.find({orderId: id}, function(err, orderDetails){
+                if(err){
+                    res.render('orderdetails', {order: err, title:'Orderdetails'});
+                } else {
+                    var productIds = [];
+                    for(var i = 0; i < orderDetails.length; i++){
+                       productIds.push(orderDetails[i].productId);
+                    }
+                    console.log(productIds);
+                    model.ProductModel.find({_id: {$in:productIds}}, function(err, productDetails){
+                        if(err){
+                            res.render('orderdetails', {order: err, title:'Orderdetails'});
+                        } else {
+                            res.render('orderdetails', {order: order, orderDetails: orderDetails, productDetails: productDetails, title: 'Orderdetails'});
+                        }
+                        modelMongo.close();
+                    })
+
+                }
+
+            })
+
+
         }
-        modelMongo.close();
+
     })
 })
 module.exports = router;
