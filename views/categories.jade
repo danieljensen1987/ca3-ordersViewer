@@ -1,0 +1,16 @@
+extends layout
+block content
+    div.container
+        .colcol-lg-12
+            table.table.table-striped.table-hover
+                thead
+                    tr
+                        th ID
+                        th NAME
+                        th DESCRIPTION
+                tbody
+                    for category in categories
+                        tr(onclick='DoNav("/categories/", #{category._id})')
+                            td #{category._id}
+                            td #{category.name}
+                            td #{category.description}
