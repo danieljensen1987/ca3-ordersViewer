@@ -3,61 +3,82 @@ block content
     div.container
         .col-lg-12
             .col-md-6
-                label(style='width: 10em'): h4 ID:
-                label: h4 #{order[0]._id}
+                label(style='width: 10em') Order ID:
+                label #{order[0]._id}
                 br
-                label(style='width: 10em'): h4 Date:
-                label: h4 #{order[0].orderDate}
+                label(style='width: 10em') Date:
+                label #{order[0].orderDate}
                 br
-                label(style='width: 10em'): h4 Required:
-                label: h4 #{order[0].requiredDate}
+                label(style='width: 10em') Required:
+                label #{order[0].requiredDate}
                 br
-                label(style='width: 10em'): h4 Shipped:
-                label: h4 #{order[0].shippedDate}
+                label(style='width: 10em') Shipped:
+                label #{order[0].shippedDate}
+                br
+                label(style='width: 10em') Shipped Via:
+                label #{order[0].shipVia}
+                br
+                label(style='width: 10em') Freight:
+                label #{order[0].freight}
+                br
+                br
 
             .col-md-6
-                label(style='width: 10em'): h4 Name:
-                label: h4 #{order[0].shipName}
+                label(style='width: 10em') Name:
+                label #{order[0].shipName}
                 br
-                label(style='width: 10em'): h4 Address:
-                label: h4 #{order[0].shipAddress}
+                label(style='width: 10em') Address:
+                label #{order[0].shipAddress}
                 br
-                label(style='width: 10em'): h4 City:
-                label: h4 #{order[0].shipCity}
+                label(style='width: 10em') City:
+                label #{order[0].shipCity}
                 br
-                label(style='width: 10em'): h4 Zip:
-                label: h4 #{order[0].shipPostalCode}
+                label(style='width: 10em') Zip:
+                label #{order[0].shipPostalCode}
                 br
-                label(style='width: 10em'): h4 Country:
-                label: h4 #{order[0].shipCountry}
+                label(style='width: 10em') Country:
+                label #{order[0].shipCountry}
+                br
+                br
+
+        .col-lg-12
+            .col-md-3
+                table.table-hover.text-info(style='background-color:transparent;')
+                    tr(onclick='DoNav("/employees/", #{order[0].employeeId})')
+                        td(style='width:10em'): h4 Emplyee ID:
+                        td: h4 #{order[0].employeeId}
+                    tr(onclick='DoNav("/customers/", "#{order[0].customerId}")')
+                        td(style='width:10em'): h4 Customer ID:
+                        td: h4 #{order[0].customerId}
+
                 br
                 br
 
             table.table.table-striped.table-hover
-                thead
+                 thead
                     tr
                         th Product
                         th(style='text-align: right') UnitPrice
                         th(style='text-align: right') Quantity
                         th(style='text-align: right') Discount
                         th(style='text-align: right') Price
-                tbody(style='text-align: right')
+                 tbody(style='text-align: right')
                     - var total = 0
-                    for detail in orderDetails
-                         tr
-                             for product in productDetails
-                                 if(detail.productId == product._id)
-                                     td(style='text-align: left') #{product.name}
-                             td #{detail.unitPrice.toFixed(2)}
-                             td #{detail.quantity}
-                             td #{detail.discount.toFixed(2)}
-                             - var calc = function(){
-                             -    var res = (detail.unitPrice*detail.quantity)*(1-detail.discount)
-                             -    total+=res
-                             - return res.toFixed(2)}
-                             td #{calc()}
+                    for detail in orderdetails
+                        tr
+                            for product in productdetails
+                                if(detail.productId == product._id)
+                                    td(style='text-align: left') #{product.name}
+                            td #{detail.unitPrice.toFixed(2)}
+                            td #{detail.quantity}
+                            td #{detail.discount.toFixed(2)}
+                            - var calc = function(){
+                            -    var res = (detail.unitPrice*detail.quantity)*(1-detail.discount)
+                            -    total+=res
+                            - return res.toFixed(2)}
+                            td #{calc()}
                     tr
-                       td(colspan='4' style='text-align: left'): h4 Total
-                       td(style='text-align: right'): h4 #{total.toFixed(2)}
-
+                        td(colspan='4' style='text-align: left') Total
+                        td(style='text-align: right') #{total.toFixed(2)}
             button.btn.btn-success(onclick='goBack()') BACK
+                 

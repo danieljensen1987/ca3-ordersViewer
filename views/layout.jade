@@ -12,11 +12,20 @@ html
           .navbar-header
             .navbar-brand #{title}
           #navbar-main.navbar-collapse.collapse
-            ul.nav.navbar-nav.navbar-right
-              li
-                a(href='/orders') Orders
-              li
-                a(href='/') Home
+                ul.nav.navbar-nav.navbar-right
+                    li.dropdown
+                        a.dropdown-toggle(href='#', data-toggle='dropdown')
+                            | Category &nbsp;
+                            b.caret
+                        ul.dropdown-menu
+                            li: a(href='/categories/5') Grains/Cereals
+                            li: a(href='/categories/7') Produce
+                            li: a(href='/categories/6') Meat/Poultry
+                            li: a(href='/categories/8') Seafood
+
+                    li: a(href='/categories') Category
+                    li: a(href='/orders') Orders
+                    li: a(href='/').btn-default: span.glyphicon.glyphicon-home
     br
     br
     br
