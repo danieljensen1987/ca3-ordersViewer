@@ -1,0 +1,27 @@
+extends layout
+block content
+    div.container
+        .colcol-lg-12
+            table.table.table-striped.table-hover
+                thead
+                    tr
+                        th ID
+                        th NAME
+                        th QUATITY/UNIT
+                        th UNITPRICE
+                        th IN STOCK
+                        th ON ORDER
+                        th REORDER LVL
+                        th DISCONTINUED
+
+                tbody
+                    for product in products
+                        tr(onclick='DoNav("/products/", #{product._id})')
+                            td #{product._id}
+                            td #{product.name}
+                            td #{product.quantityPerUnit}
+                            td #{product.unitPrice}
+                            td #{product.unitsInStock}
+                            td #{product.unitsOnOrder}
+                            td #{product.reorderLevel}
+                            td #{product.discontinued}
