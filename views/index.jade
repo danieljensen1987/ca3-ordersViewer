@@ -1,6 +1,26 @@
 extends layout
 block content
-    div.container
-        h1 Hello
+    .container
+        h4 This is our current solution for the 3rd semester Course Assignment 3.
+            |We use MEB stack (Mongo Express Bootstrap) and node.
+            |The goal is to fully use MEAN stack, but we haven't got to Angular yet.
+            br
+            br
+            |This site shows a list of orders. By clicking on each order you can view details for that order.
+            |Furthermore, you can view products, categories, custumers and employees.
+            |Every element is clickable, to view orders for the selected element.
+            br
+            br
 
+        h3 Get On With This Project &nbsp;
+            .a.btn.btn-default.btn-sm(type="button", onclick="window.open('/orders', '_self')")
+                span.glyphicon.glyphicon-forward
+
+        h3 View Documentaion &nbsp;
+            .a.btn.btn-default.btn-sm(type="button", onclick="window.open('/docs');")
+                span.glyphicon.glyphicon-forward
+
+        h3 View Source Code &nbsp;
+            .a.btn.btn-default.btn-sm(type="button", onclick="window.open('https://github.com/danieljensen1987/ca3-ordersViewer');")
+                span.glyphicon.glyphicon-forward
             
