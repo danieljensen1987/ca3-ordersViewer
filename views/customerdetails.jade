@@ -1,0 +1,63 @@
+extends layout
+block content
+    //p #{customer}
+    div.container
+        .col-lg-12
+            .col-md-6
+                label(style='width: 10em') ID:
+                label #{customer[0]._id}
+                br
+                label(style='width: 10em') Company Name:
+                label #{customer[0].companyName}
+                br
+                label(style='width: 10em') Contact Name:
+                label #{customer[0].contactName}
+                br
+                label(style='width: 10em') Job Title:
+                label #{customer[0].contactTitle}
+                br
+
+            .col-md-6
+                label(style='width: 10em') Address:
+                label #{customer[0].address}
+                br
+                label(style='width: 10em') City:
+                label #{customer[0].city}
+                br
+                label(style='width: 10em') Region:
+                label #{customer[0].region}
+                br
+                label(style='width: 10em') Zip:
+                label #{customer[0].postalCode}
+                br
+                label(style='width: 10em') Country:
+                label #{customer[0].country}
+                br
+                label(style='width: 10em') Phone:
+                label #{customer[0].phone}
+                br
+                label(style='width: 10em') Fax:
+                label #{customer[0].fax}
+                br
+                br
+
+        .col-lg-12
+            table.table.table-striped.table-hover
+                thead
+                    tr
+                        th ID
+                        th DATE
+                        th REQUIRED
+                        th SHIPPED
+                        th VIA
+                        th FREIGHT
+
+                tbody
+                    for order in orders
+                        tr(onclick='DoNav("/orderdetails/", #{order._id})')
+                            td #{order._id}
+                            td #{order.orderDate}
+                            td #{order.requiredDate}
+                            td #{order.shippedDate}
+                            td #{order.shipVia}
+                            td #{order.freight}
