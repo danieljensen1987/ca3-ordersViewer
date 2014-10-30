@@ -1,0 +1,25 @@
+extends layout
+block content
+    //p #{employees}
+    div.container
+        .colcol-lg-12
+
+            table.table.table-striped.table-hover
+                thead
+                    tr
+                        th ID
+                        th TITLE
+                        th NAME
+                        th JOB TITLE
+                        th HIRED
+                        th PHONE
+
+                tbody
+                    for employee in employees
+                        tr(onclick='DoNav("/employees/", #{employee._id})')
+                            td #{employee._id}
+                            td #{employee.titleOfCourtesy}
+                            td #{employee.lastName}, #{employee.firstName}
+                            td #{employee.title}
+                            td #{employee.hireDate}
+                            td #{employee.homePhone}

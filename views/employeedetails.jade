@@ -1,0 +1,76 @@
+extends layout
+block content
+    //p #{employee}
+    div.container
+        .col-lg-12
+            .col-md-6
+                label(style='width: 10em') ID:
+                label #{employee[0]._id}
+                br
+                label(style='width: 10em') Title:
+                label #{employee[0].titleOfCourtesy}
+                br
+                label(style='width: 10em') First Name:
+                label #{employee[0].firstName}
+                br
+                label(style='width: 10em') LastName:
+                label #{employee[0].lastName}
+                br
+                label(style='width: 10em') Birth Date:
+                label #{employee[0].birthDate}
+                br
+                label(style='width: 10em') Job Title:
+                label #{employee[0].title}
+                br
+                label(style='width: 10em') Hired:
+                label #{employee[0].hireDate}
+                br
+
+            .col-md-6
+                label(style='width: 10em') Address:
+                label #{employee[0].address}
+                br
+                label(style='width: 10em') City:
+                label #{employee[0].city}
+                br
+                label(style='width: 10em') Region:
+                label #{employee[0].region}
+                br
+                label(style='width: 10em') Zip:
+                label #{employee[0].postalCode}
+                br
+                label(style='width: 10em') Country:
+                label #{employee[0].country}
+                br
+                label(style='width: 10em') Phone:
+                label #{employee[0].homePhone}
+                br
+                label(style='width: 10em') Extension:
+                label #{employee[0].extension}
+                br
+                br
+
+            label Notes: #{employee[0].notes}
+            br
+            br
+
+        .col-lg-12
+            table.table.table-striped.table-hover
+                thead
+                    tr
+                        th ID
+                        th DATE
+                        th REQUIRED
+                        th SHIPPED
+                        th VIA
+                        th FREIGHT
+
+                tbody
+                    for order in orders
+                        tr(onclick='DoNav("/orderdetails/", #{order._id})')
+                            td #{order._id}
+                            td #{order.orderDate}
+                            td #{order.requiredDate}
+                            td #{order.shippedDate}
+                            td #{order.shipVia}
+                            td #{order.freight}
