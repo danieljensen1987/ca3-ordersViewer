@@ -1,0 +1,24 @@
+extends layout
+block content
+    //p #{customers}
+    div.container
+        .colcol-lg-12
+            table.table.table-striped.table-hover
+                thead
+                    tr
+                        th ID
+                        th COMPANY NAME
+                        th CONTACT NAME
+                        th JOB TITLE
+                        th PHONE
+                        th FAX
+
+                tbody
+                    for customer in customers
+                        tr(onclick='DoNav("/customers/", "#{customer._id}")')
+                            td #{customer._id}
+                            td #{customer.companyName}
+                            td #{customer.contactName}
+                            td #{customer.contactTitle}
+                            td #{customer.phone}
+                            td #{customer.fax}
