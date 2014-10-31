@@ -29,10 +29,25 @@ router.get('/:employeeId', function (req, res) {
             if (err){
                 res.render('error', { message: err, title: 'Error' });
             } else {
+                console.log(details);
                 res.render('employeedetails', { details: details.sort(sortById), title: 'Details For '});
             }
             modelMongo.close();
         });
 });
+
+router.delete('/:employeeId', function (req, res) {
+    var employeeId = req.params.employeeId;
+    modelMongo.connect();
+    model.EmployeeModel.remove({ _id: employeeId }, function (err, details) {
+        if (err){
+            res.render('error', { message: err, title: 'Error' });
+        } else {
+            console.log('virker ikke');
+            res.redirect('index', { title: 'Home' });
+        }
+        modelMongo.close();
+    })
+})
 
 module.exports = router;

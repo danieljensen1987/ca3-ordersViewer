@@ -9,16 +9,7 @@ function sortByDate(a, b) {
 
 /* GET home page. */
 router.get('/', function(req, res) {
-    modelMongo.connect();
-    model.CategoryModel.find({}, function (err, categories){
-        if (err){
-            res.render('error', { message: err, title: 'Orders' });
-        } else {
-            res.render('index', { categories: categories, title: 'Home' });
-        }
-        modelMongo.close();
-    })
-
+    res.render('index', { title: 'Home' });
 });
 
 router.get('/orders', function(req, res) {

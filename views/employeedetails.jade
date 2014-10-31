@@ -5,7 +5,7 @@ block content
         .col-lg-12
             .col-md-6
                 label(style='width: 10em') ID:
-                label #{details[0]._id}
+                label #{details[0].employee._id}
                 br
                 label(style='width: 10em') Title:
                 label #{details[0].employee.titleOfCourtesy}
@@ -54,23 +54,4 @@ block content
             br
             br
 
-        .col-lg-12
-            table.table.table-striped.table-hover
-                thead
-                    tr
-                        th ID
-                        th DATE
-                        th REQUIRED
-                        th SHIPPED
-                        th VIA
-                        th FREIGHT
 
-                tbody
-                    for detail in details
-                        tr(onclick='DoNav("/orderdetails/", #{detail._id})')
-                            td #{detail._id}
-                            td #{detail.orderDate}
-                            td #{detail.requiredDate}
-                            td #{detail.shippedDate}
-                            td #{detail.shipVia}
-                            td #{detail.freight}

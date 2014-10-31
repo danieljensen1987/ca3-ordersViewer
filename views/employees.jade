@@ -1,5 +1,7 @@
 extends layout
 block content
+    script(type = 'text/javascript')
+
     //p #{employees}
     div.container
         .colcol-lg-12
@@ -13,13 +15,16 @@ block content
                         th JOB TITLE
                         th HIRED
                         th PHONE
+                        th DELETE
 
                 tbody
                     for employee in employees
-                        tr(onclick='DoNav("/employees/", #{employee._id})')
-                            td #{employee._id}
+                        tr
+                            td: a.btn.btn-xs.btn-link(href='/employees/#{employee._id}') #{employee._id}
                             td #{employee.titleOfCourtesy}
                             td #{employee.lastName}, #{employee.firstName}
                             td #{employee.title}
                             td #{employee.hireDate}
                             td #{employee.homePhone}
+                            td: button.btn.btn-xs.btn-danger(onclick='testDelete("employees/", #{employee._id})')
+                                span.glyphicon.glyphicon-trash
