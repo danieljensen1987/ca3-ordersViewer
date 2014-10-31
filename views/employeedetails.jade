@@ -5,52 +5,52 @@ block content
         .col-lg-12
             .col-md-6
                 label(style='width: 10em') ID:
-                label #{employee[0]._id}
+                label #{details[0]._id}
                 br
                 label(style='width: 10em') Title:
-                label #{employee[0].titleOfCourtesy}
+                label #{details[0].employee.titleOfCourtesy}
                 br
                 label(style='width: 10em') First Name:
-                label #{employee[0].firstName}
+                label #{details[0].employee.firstName}
                 br
                 label(style='width: 10em') LastName:
-                label #{employee[0].lastName}
+                label #{details[0].employee.lastName}
                 br
                 label(style='width: 10em') Birth Date:
-                label #{employee[0].birthDate}
+                label #{details[0].employee.birthDate}
                 br
                 label(style='width: 10em') Job Title:
-                label #{employee[0].title}
+                label #{details[0].employee.title}
                 br
                 label(style='width: 10em') Hired:
-                label #{employee[0].hireDate}
+                label #{details[0].employee.hireDate}
                 br
 
             .col-md-6
                 label(style='width: 10em') Address:
-                label #{employee[0].address}
+                label #{details[0].employee.address}
                 br
                 label(style='width: 10em') City:
-                label #{employee[0].city}
+                label #{details[0].employee.city}
                 br
                 label(style='width: 10em') Region:
-                label #{employee[0].region}
+                label #{details[0].employee.region}
                 br
                 label(style='width: 10em') Zip:
-                label #{employee[0].postalCode}
+                label #{details[0].employee.postalCode}
                 br
                 label(style='width: 10em') Country:
-                label #{employee[0].country}
+                label #{details[0].employee.country}
                 br
                 label(style='width: 10em') Phone:
-                label #{employee[0].homePhone}
+                label #{details[0].employee.homePhone}
                 br
                 label(style='width: 10em') Extension:
-                label #{employee[0].extension}
+                label #{details[0].employee.extension}
                 br
                 br
 
-            label Notes: #{employee[0].notes}
+            label Notes: #{details[0].employee.notes}
             br
             br
 
@@ -66,11 +66,11 @@ block content
                         th FREIGHT
 
                 tbody
-                    for order in orders
-                        tr(onclick='DoNav("/orderdetails/", #{order._id})')
-                            td #{order._id}
-                            td #{order.orderDate}
-                            td #{order.requiredDate}
-                            td #{order.shippedDate}
-                            td #{order.shipVia}
-                            td #{order.freight}
+                    for detail in details
+                        tr(onclick='DoNav("/orderdetails/", #{detail._id})')
+                            td #{detail._id}
+                            td #{detail.orderDate}
+                            td #{detail.requiredDate}
+                            td #{detail.shippedDate}
+                            td #{detail.shipVia}
+                            td #{detail.freight}

@@ -7,9 +7,6 @@ function sortById(a, b) {
     return a._id - b._id;
 }
 
-function sortByOrderId(a, b) {
-    return a.orderId - b.orderId;
-}
 
 router.get('/', function(req, res) {
     modelMongo.connect();
@@ -26,23 +23,16 @@ router.get('/', function(req, res) {
 router.get('/:employeeId', function (req, res) {
     var employeeId = req.params.employeeId;
     modelMongo.connect();
-    model.EmployeeModel.find({_id: employeeId}, function (err, employee) {
-        if (err){
-            res.render('error', { message: err, title: 'Error' });
-        } else {
-            model.OrderModel.find({employeeId: employeeId}, function (err, orders) {
-                if (err){
-                    res.render('error', { message: err, title: 'Error' });
-                } else {
-                    res.render('employeedetails', {
-                        employee: employee,
-                        orders: orders.sort(sortById),
-                        title: 'Details For ' + employee[0].firstName[0] + ', ' + employee[0].lastName});
-                }
-                modelMongo.close();
-            });
-        }
-    })
+    model.OrderModel.find({employee: employeeId})
+        .populate('employee')
+        .exec(function(err, details) {
+            if (err){
+                res.render('error', { message: err, title: 'Error' });
+            } else {
+                res.render('employeedetails', { details: details.sort(sortById), title: 'Details For '});
+            }
+            modelMongo.close();
+        });
 });
 
 module.exports = router;

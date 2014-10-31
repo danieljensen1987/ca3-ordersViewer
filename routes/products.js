@@ -8,7 +8,7 @@ function sortById(a, b) {
 }
 
 function sortByOrderId(a, b) {
-    return a.orderId - b.orderId;
+    return a.order - b.order;
 }
 
 router.get('/', function(req, res) {
@@ -26,20 +26,16 @@ router.get('/', function(req, res) {
 router.get('/:productId', function (req, res) {
     var productId = req.params.productId;
     modelMongo.connect();
-    model.DetailsModel.find({productId: productId}, function (err, details) {
-        if (err){
-            res.render('error', { message: err, title: 'Error' });
-        } else {
-            model.ProductModel.find({_id: productId}, function (err, product) {
-                if (err){
-                    res.render('error', { message: err, title: 'Error' });
-                } else {
-                    res.render('productdetails', { details: details.sort(sortByOrderId), title: 'Details For ' + product[0].name});
-                }
-                modelMongo.close();
-            })
-        }
-    });
+    model.DetailsModel.find({product: productId})
+        .populate('product')
+        .exec(function(err, details) {
+            if (err){
+                res.render('error', { message: err, title: 'Error' });
+            } else {
+                res.render('productdetails', { details: details.sort(sortByOrderId), title: 'Details For ' + details[0].product.name});
+            }
+            modelMongo.close();
+        });
 });
 
 module.exports = router;

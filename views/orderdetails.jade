@@ -4,57 +4,57 @@ block content
         .col-lg-12
             .col-md-6
                 label(style='width: 10em') Order ID:
-                label #{order[0]._id}
+                label #{details[0].order._id}
                 br
                 label(style='width: 10em') Date:
-                label #{order[0].orderDate}
+                label #{details[0].order.orderDate}
                 br
                 label(style='width: 10em') Required:
-                label #{order[0].requiredDate}
+                label #{details[0].order.requiredDate}
                 br
                 label(style='width: 10em') Shipped:
-                label #{order[0].shippedDate}
+                label #{details[0].order.shippedDate}
                 br
                 label(style='width: 10em') Shipped Via:
-                label #{order[0].shipVia}
+                label #{details[0].order.shipVia}
                 br
                 label(style='width: 10em') Freight:
-                label #{order[0].freight}
+                label #{details[0].order.freight}
                 br
                 br
 
             .col-md-6
                 label(style='width: 10em') Name:
-                label #{order[0].shipName}
+                label #{details[0].order.shipName}
                 br
                 label(style='width: 10em') Address:
-                label #{order[0].shipAddress}
+                label #{details[0].order.shipAddress}
                 br
                 label(style='width: 10em') City:
-                label #{order[0].shipCity}
+                label #{details[0].order.shipCity}
                 br
                 label(style='width: 10em') Zip:
-                label #{order[0].shipPostalCode}
+                label #{details[0].order.shipPostalCode}
                 br
                 label(style='width: 10em') Country:
-                label #{order[0].shipCountry}
+                label #{details[0].order.shipCountry}
                 br
                 br
 
         .col-lg-12
             .col-md-3
                 table.table-hover.text-info(style='background-color:transparent;')
-                    tr(onclick='DoNav("/employees/", #{order[0].employeeId})')
+                    tr(onclick='DoNav("/employees/", #{details[0].order.employee})')
                         td(style='width:10em'): h4 Emplyee ID:
-                        td: h4 #{order[0].employeeId}
-                    tr(onclick='DoNav("/customers/", "#{order[0].customerId}")')
+                        td: h4 #{details[0].order.employee}
+                    tr(onclick='DoNav("/customers/", "#{details[0].order.customer}")')
                         td(style='width:10em'): h4 Customer ID:
-                        td: h4 #{order[0].customerId}
+                        td: h4 #{details[0].order.customer}
 
                 br
                 br
 
-            table.table.table-striped.table-hover
+            table.table.table-striped
                  thead
                     tr
                         th Product
@@ -64,11 +64,9 @@ block content
                         th(style='text-align: right') Price
                  tbody(style='text-align: right')
                     - var total = 0
-                    for detail in orderdetails
+                    for detail in details
                         tr
-                            for product in productdetails
-                                if(detail.productId == product._id)
-                                    td(style='text-align: left') #{product.name}
+                            td(style='text-align: left') #{detail.product.name}
                             td #{detail.unitPrice.toFixed(2)}
                             td #{detail.quantity}
                             td #{detail.discount.toFixed(2)}

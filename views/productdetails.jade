@@ -13,8 +13,8 @@ block content
                 tbody
                     - var total = 0;
                     for detail in details
-                        tr(onclick='DoNav("/orderdetails/", #{detail.orderId})')
-                            td #{detail.orderId}
+                        tr(onclick='DoNav("/orderdetails/", #{detail.order})')
+                            td #{detail.order}
                             td #{detail.unitPrice}
                             td #{detail.quantity}
                             td #{detail.discount}

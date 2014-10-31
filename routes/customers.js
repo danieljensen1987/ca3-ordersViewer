@@ -22,23 +22,17 @@ router.get('/', function(req, res) {
 router.get('/:customerId', function (req, res) {
     var customerId = req.params.customerId;
     modelMongo.connect();
-    model.CustomerModel.find({_id: customerId}, function (err, customer) {
-        if (err){
-            res.render('error', { message: err, title: 'Error' });
-        } else {
-            model.OrderModel.find({customerId: customerId}, function (err, orders) {
-                if (err){
-                    res.render('error', { message: err, title: 'Error' });
-                } else {
-                    res.render('customerdetails', {
-                        customer: customer,
-                        orders: orders.sort(sortById),
-                        title: 'Details For ' + customer[0].companyName});
-                }
-                modelMongo.close();
-            });
-        }
-    })
+
+    model.OrderModel.find({customer: customerId})
+        .populate('customer')
+        .exec(function(err, details) {
+            if (err){
+                res.render('error', { message: err, title: 'Error' });
+            } else {
+                res.render('customerdetails', { details: details.sort(sortById), title: 'Details For '});
+            }
+            modelMongo.close();
+        });
 });
 
 module.exports = router;

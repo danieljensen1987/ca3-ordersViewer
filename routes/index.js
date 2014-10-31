@@ -36,36 +36,17 @@ router.get('/orders', function(req, res) {
 router.get('/orderdetails/:orderId', function (req, res) {
     var orderId = req.params.orderId;
     modelMongo.connect();
-    model.OrderModel.find({_id: orderId}, function (err, order) {
-        if (err){
-            res.render('error', { message: err, title: 'Error' });
-        } else {
-            model.DetailsModel.find({orderId: orderId}, function (err, orderdetails) {
-                if(err){
-                    res.render('error', { message: err, title: 'Error' });
-                } else {
-                    var productIds = [];
-                    for (var i = 0; i < orderdetails.length; i++){
-                        productIds.push(orderdetails[i].productId);
-                    }
-
-                    model.ProductModel.find({_id: {$in: productIds}}, function (err, productdetails) {
-                        if(err){
-                            res.render('error', { message: err, title: 'Error' });
-                        } else {
-                            res.render('orderdetails', {
-                                order: order,
-                                orderdetails: orderdetails,
-                                productdetails: productdetails,
-                                title: 'Details For Order ' + orderId
-                            });
-                        }
-                        modelMongo.close();
-                    })
-                }
-            });
-        }
-    });
+    model.DetailsModel.find({order: orderId})
+        .populate('product')
+        .populate('order')
+        .exec(function(err, details) {
+            if (err){
+                res.render('error', { message: err, title: 'Error' });
+            } else {
+                res.render('orderdetails', { details: details, title: 'Details For Order ' + orderId});
+            }
+            modelMongo.close();
+        });
 });
 
 module.exports = router;

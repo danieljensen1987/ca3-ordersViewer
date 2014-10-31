@@ -22,7 +22,7 @@ router.get('/', function(req, res) {
 router.get('/:categoryId', function (req, res) {
     var categoryId = req.params.categoryId;
     modelMongo.connect();
-    model.ProductModel.find({categoryId: categoryId}, function (err, products) {
+    model.ProductModel.find({category: categoryId}, function (err, products) {
         if (err){
             res.render('error', { message: err, title: 'Error' });
         } else {

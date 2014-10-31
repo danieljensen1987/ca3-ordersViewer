@@ -5,39 +5,39 @@ block content
         .col-lg-12
             .col-md-6
                 label(style='width: 10em') ID:
-                label #{customer[0]._id}
+                label #{details[0].customer._id}
                 br
                 label(style='width: 10em') Company Name:
-                label #{customer[0].companyName}
+                label #{details[0].customer.companyName}
                 br
                 label(style='width: 10em') Contact Name:
-                label #{customer[0].contactName}
+                label #{details[0].customer.contactName}
                 br
                 label(style='width: 10em') Job Title:
-                label #{customer[0].contactTitle}
+                label #{details[0].customer.contactTitle}
                 br
 
             .col-md-6
                 label(style='width: 10em') Address:
-                label #{customer[0].address}
+                label #{details[0].customer.address}
                 br
                 label(style='width: 10em') City:
-                label #{customer[0].city}
+                label #{details[0].customer.city}
                 br
                 label(style='width: 10em') Region:
-                label #{customer[0].region}
+                label #{details[0].customer.region}
                 br
                 label(style='width: 10em') Zip:
-                label #{customer[0].postalCode}
+                label #{details[0].customer.postalCode}
                 br
                 label(style='width: 10em') Country:
-                label #{customer[0].country}
+                label #{details[0].customer.country}
                 br
                 label(style='width: 10em') Phone:
-                label #{customer[0].phone}
+                label #{details[0].customer.phone}
                 br
                 label(style='width: 10em') Fax:
-                label #{customer[0].fax}
+                label #{details[0].customer.fax}
                 br
                 br
 
@@ -53,11 +53,11 @@ block content
                         th FREIGHT
 
                 tbody
-                    for order in orders
-                        tr(onclick='DoNav("/orderdetails/", #{order._id})')
-                            td #{order._id}
-                            td #{order.orderDate}
-                            td #{order.requiredDate}
-                            td #{order.shippedDate}
-                            td #{order.shipVia}
-                            td #{order.freight}
+                    for detail in details
+                        tr(onclick='DoNav("/orderdetails/", #{detail._id})')
+                            td #{detail._id}
+                            td #{detail.orderDate}
+                            td #{detail.requiredDate}
+                            td #{detail.shippedDate}
+                            td #{detail.shipVia}
+                            td #{detail.freight}
