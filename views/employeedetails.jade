@@ -54,4 +54,25 @@ block content
             br
             br
 
+        .col-lg-12
+            table.table.table-striped.table-hover
+                thead
+                    tr
+                        th ID
+                        th DATE
+                        th REQUIRED
+                        th SHIPPED
+                        th VIA
+                        th FREIGHT
 
+                tbody
+                    for detail in details
+                        tr
+                            td: a.btn.btn-xs.btn-link.text-info(href='/orderdetails/#{detail._id}') #{detail._id}
+                            td #{detail.orderDate}
+                            td #{detail.requiredDate}
+                            td #{detail.shippedDate}
+                            td #{detail.shipVia}
+                            td #{detail.freight}
+
+            button.btn.btn-success(onclick='goBack()') BACK

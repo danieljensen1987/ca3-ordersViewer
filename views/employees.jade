@@ -20,7 +20,7 @@ block content
                 tbody
                     for employee in employees
                         tr
-                            td: a.btn.btn-xs.btn-link(href='/employees/#{employee._id}') #{employee._id}
+                            td: a.btn.btn-xs.btn-link.text-info(href='/employees/#{employee._id}') #{employee._id}
                             td #{employee.titleOfCourtesy}
                             td #{employee.lastName}, #{employee.firstName}
                             td #{employee.title}
@@ -28,3 +28,5 @@ block content
                             td #{employee.homePhone}
                             td: button.btn.btn-xs.btn-danger(onclick='testDelete("employees/", #{employee._id})')
                                 span.glyphicon.glyphicon-trash
+
+            button.btn.btn-success(onclick='goBack()') BACK

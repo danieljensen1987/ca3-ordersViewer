@@ -10,7 +10,9 @@ block content
                         th DESCRIPTION
                 tbody
                     for category in categories
-                        tr(onclick='DoNav("/categories/", #{category._id})')
-                            td #{category._id}
+                        tr
+                            td: a.btn.btn-xs.btn-link.text-info(href='/categories/#{category._id}') #{category._id}
                             td #{category.name}
                             td #{category.description}
+
+            button.btn.btn-success(onclick='goBack()') BACK

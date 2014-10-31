@@ -43,13 +43,13 @@ block content
 
         .col-lg-12
             .col-md-3
-                table.table-hover.text-info(style='background-color:transparent;')
-                    tr(onclick='DoNav("/employees/", #{details[0].order.employee})')
+                table(style='background-color:transparent;')
+                    tr
                         td(style='width:10em'): h4 Emplyee ID:
-                        td: h4 #{details[0].order.employee}
-                    tr(onclick='DoNav("/customers/", "#{details[0].order.customer}")')
+                        td: a.btn.btn-xs.btn-link.text-info(href='/employees/#{details[0].order.employee}'): h4 #{details[0].order.employee}
+                    tr
                         td(style='width:10em'): h4 Customer ID:
-                        td: h4 #{details[0].order.customer}
+                        td: a.btn.btn-xs.btn-link.text-info(href='/customers/#{details[0].order.customer}'): h4 #{details[0].order.customer}
 
                 br
                 br
@@ -78,5 +78,6 @@ block content
                     tr
                         td(colspan='4' style='text-align: left') Total
                         td(style='text-align: right') #{total.toFixed(2)}
+            
             button.btn.btn-success(onclick='goBack()') BACK
                  

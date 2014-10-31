@@ -13,8 +13,8 @@ block content
                 tbody
                     - var total = 0;
                     for detail in details
-                        tr(onclick='DoNav("/orderdetails/", #{detail.order})')
-                            td #{detail.order}
+                        tr
+                            td: a.btn.btn-xs.btn-link.text-info(href='/orderdetails/#{detail.order}') #{detail.order}
                             td #{detail.unitPrice}
                             td #{detail.quantity}
                             td #{detail.discount}
@@ -27,3 +27,5 @@ block content
                     tr
                         td(colspan='4') TOTAL
                         td #{total.toFixed(2)}
+
+            button.btn.btn-success(onclick='goBack()') BACK

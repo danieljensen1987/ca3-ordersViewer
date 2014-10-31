@@ -16,8 +16,8 @@ block content
 
                 tbody
                     for product in products
-                        tr(onclick='DoNav("/products/", #{product._id})')
-                            td #{product._id}
+                        tr
+                            td: a.btn.btn-xs.btn-link.text-info(href='/products/#{product._id}') #{product._id}
                             td #{product.name}
                             td #{product.quantityPerUnit}
                             td #{product.unitPrice}
@@ -25,3 +25,5 @@ block content
                             td #{product.unitsOnOrder}
                             td #{product.reorderLevel}
                             td #{product.discontinued}
+
+            button.btn.btn-success(onclick='goBack()') BACK
